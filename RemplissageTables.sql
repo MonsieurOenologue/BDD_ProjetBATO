@@ -36,10 +36,9 @@ INSERT INTO "CLIENT" VALUES (2, 'Client Simple', '1th simplicity lane','particul
 INSERT INTO "CLIENT" VALUES (3, 'Client Complexe', '5th complex square','entreprise');
 INSERT INTO "CLIENT" VALUES (4, 'Grand Mechant Loup', 'Maison de mère grand','entreprise');
 INSERT INTO "CLIENT" VALUES (5, 'Filipe Gama', 'Achères Ville','particulier');
-INSERT INTO "CLIENT" VALUES (6, 'Vincent Monot', 'Courdimanche','particulier')
+INSERT INTO "CLIENT" VALUES (6, 'Vincent Monot', 'Courdimanche','particulier');
 
 --NUM_IM, DATE_ACHAT, KILOMETRAGE, MODELE, MARQUE, CAUTION
---Changer Modele pour mettre un char
 INSERT INTO "VEHICULE" VALUES (132289,'16/01/2015',3500,'3XS','Citroen',200);
 INSERT INTO "VEHICULE" VALUES (142992,'16/01/2015',6800,'206','Peugeot',250);
 INSERT INTO "VEHICULE" VALUES (432332,'16/01/2015',4200,'32S','Mercedes',800);
