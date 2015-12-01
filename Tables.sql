@@ -13,7 +13,7 @@ CREATE TABLE "CLIENT"
 	numero integer PRIMARY KEY,
 	nom char(30),
 	adresse char(30),
-	type_Client integer
+	type_Client char(30)
 );
 
 CREATE TABLE "VEHICULE"

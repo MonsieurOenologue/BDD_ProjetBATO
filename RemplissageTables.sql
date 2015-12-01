@@ -30,13 +30,13 @@ INSERT INTO "EMPLOYE" VALUES (7,'Roger','6 quai des serpents','23/05/2015','méc
 INSERT INTO "EMPLOYE" VALUES (8,'Charlotte','3 rue du chocolat','26/05/2015','commercial','false',2);
 
 --NUMERO, NOM, ADRESSE
-INSERT INTO "CLIENT" VALUES (0, 'Jean Jambe', '3 quartier du zoo');
-INSERT INTO "CLIENT" VALUES (1, 'SuperKlavier3000', '6th keyboard square');
-INSERT INTO "CLIENT" VALUES (2, 'Client Simple', '1th simplicity lane');
-INSERT INTO "CLIENT" VALUES (3, 'Client Complexe', '5th complex square');
-INSERT INTO "CLIENT" VALUES (4, 'Grand Mechant Loup', 'Maison de mère grand');
-INSERT INTO "CLIENT" VALUES (5, 'Filipe Gama', 'Achères Ville');
-INSERT INTO "CLIENT" VALUES (6, 'Vincent Monot', 'Courdimanche')
+INSERT INTO "CLIENT" VALUES (0, 'Jean Jambe', '3 quartier du zoo','particulier');
+INSERT INTO "CLIENT" VALUES (1, 'SuperKlavier3000', '6th keyboard square','entreprise');
+INSERT INTO "CLIENT" VALUES (2, 'Client Simple', '1th simplicity lane','particulier');
+INSERT INTO "CLIENT" VALUES (3, 'Client Complexe', '5th complex square','entreprise');
+INSERT INTO "CLIENT" VALUES (4, 'Grand Mechant Loup', 'Maison de mère grand','entreprise');
+INSERT INTO "CLIENT" VALUES (5, 'Filipe Gama', 'Achères Ville','particulier');
+INSERT INTO "CLIENT" VALUES (6, 'Vincent Monot', 'Courdimanche','particulier')
 
 --NUM_IM, DATE_ACHAT, KILOMETRAGE, MODELE, MARQUE, CAUTION
 --Changer Modele pour mettre un char
