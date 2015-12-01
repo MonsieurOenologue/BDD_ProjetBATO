@@ -15,21 +15,28 @@ INSERT INTO "AGENCE" VALUES (0,'LepesCorp','2 rue de la barbe');
 INSERT INTO "AGENCE" VALUES (1,'LefebIndustries','4 rue du style');
 INSERT INTO "AGENCE" VALUES (2,'AgenceDuStyle','8 quai des gentils');
 INSERT INTO "AGENCE" VALUES (3,'EntrepriseBDD','5 rue SQL');
+INSERT INTO "AGENCE" VALUES (4,'Voiture&Co','7 rue des as');
+INSERT INTO "AGENCE" VALUES (5,'Poudcars','Voie 9 3/4');
 
 --NUMERO, NOM, ADRESSE, DATE_EMBAUCHE, TYPE_EMPLOYE, EST_RESPONSABLE, ID_AGENCE
 INSERT INTO "EMPLOYE" VALUES (0,'Bastien','2 rue de la barbe','14/04/2015','responsable','true',0);
 INSERT INTO "EMPLOYE" VALUES (1,'Thomas','4 rue du style','14/04/2015','responsable','true',1);
 INSERT INTO "EMPLOYE" VALUES (2,'Michel','8 rue des framboises','14/04/2015','mécanicien','false',0);
 INSERT INTO "EMPLOYE" VALUES (3,'Jean','7 rue des fraises','14/04/2015','commercial','false',1);
-INSERT INTO "EMPLOYE" VALUES (4,'Jacques','12 rue des poires','18/06/2015','commercial','false',1);
+INSERT INTO "EMPLOYE" VALUES (4,'Jacques','12 rue des poires','18/05/2015','mécanicien','false',1);
+INSERT INTO "EMPLOYE" VALUES (5,'Jeanne','13 rue des coquelicots','12/05/2015','commercial','false',0);
+INSERT INTO "EMPLOYE" VALUES (6,'Pierre','4 rue du travail','18/05/2015','responsable','true',2);
+INSERT INTO "EMPLOYE" VALUES (7,'Roger','6 quai des serpents','23/05/2015','mécanicien','false',2);
+INSERT INTO "EMPLOYE" VALUES (8,'Charlotte','3 rue du chocolat','26/05/2015','commercial','false',2);
 
 --NUMERO, NOM, ADRESSE
-INSERT INTO "CLIENT" VALUES (0, 'JeanJambe', '3 quartier du zoo');
+INSERT INTO "CLIENT" VALUES (0, 'Jean Jambe', '3 quartier du zoo');
 INSERT INTO "CLIENT" VALUES (1, 'SuperKlavier3000', '6th keyboard square');
-INSERT INTO "CLIENT" VALUES (2, 'ClientSimple', '1th simplicity lane');
-INSERT INTO "CLIENT" VALUES (3, 'ClientComplexe', '5th complex square');
-INSERT INTO "CLIENT" VALUES (4, 'GrandMechantLoup', 'Maison de mère grand');
-INSERT INTO "CLIENT" VALUES (5, 'FilipeGama', 'Achères Ville');
+INSERT INTO "CLIENT" VALUES (2, 'Client Simple', '1th simplicity lane');
+INSERT INTO "CLIENT" VALUES (3, 'Client Complexe', '5th complex square');
+INSERT INTO "CLIENT" VALUES (4, 'Grand Mechant Loup', 'Maison de mère grand');
+INSERT INTO "CLIENT" VALUES (5, 'Filipe Gama', 'Achères Ville');
+INSERT INTO "CLIENT" VALUES (6, 'Vincent Monot', 'Courdimanche')
 
 --NUM_IM, DATE_ACHAT, KILOMETRAGE, MODELE, MARQUE, CAUTION
 --Changer Modele pour mettre un char
@@ -56,6 +63,7 @@ INSERT INTO "UTILITAIRE" VALUES (0,700,1500,0);
 INSERT INTO "UTILITAIRE" VALUES (1,1000,1650,1);
 INSERT INTO "UTILITAIRE" VALUES (2,2000,2500,1);
 INSERT INTO "UTILITAIRE" VALUES (3,5000,4000,2);
+INSERT INTO "UTILITAIRE" VALUES (4,4350,4700,3);
 
 --ID_AGENCE, NUM_IMMATRICULATION
 INSERT INTO "POSSEDER" VALUES (0,132289);
