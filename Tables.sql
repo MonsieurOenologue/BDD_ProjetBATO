@@ -23,7 +23,7 @@ CREATE TABLE "VEHICULE"
 	kilometrage integer,
 	modèle char(30),
 	marque char(30),
-	caution int,
+	caution integer,
 	num_Client integer REFERENCES "CLIENT"
 );
 
