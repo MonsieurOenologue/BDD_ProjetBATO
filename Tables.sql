@@ -39,7 +39,7 @@ CREATE TABLE "EMPLOYE"
 	nom char(30),
 	adresse char(30),
 	date_Embauche date,
-	type_Employe char,
+	type_Employe char(15),
 	est_Responsable boolean,
 	id_Agence integer REFERENCES "AGENCE"
 );
