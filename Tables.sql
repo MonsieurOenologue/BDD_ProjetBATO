@@ -50,7 +50,7 @@ CREATE TABLE "LOCATION"
 	id_Location integer PRIMARY KEY,
 	jour_Enregistrement date,
 	tarif_jour integer,
-	kilometrage_location integer,
+	kilometrage_Location integer,
 	nb_Jours integer,
 	num_Im integer REFERENCES "VEHICULE",
 	num_Client integer REFERENCES "CLIENT"
@@ -69,5 +69,5 @@ CREATE TABLE "UTILITAIRE"
 	id_Utilitaire integer PRIMARY KEY,
 	capacité integer,
 	charge_Max integer,
-	num_Client integer REFERENCES "CLIENT"
+	num_Im integer REFERENCES "VEHICULE"
 );
