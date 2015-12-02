@@ -1,8 +1,28 @@
-﻿--Requete 1
+--Requete 1
 SELECT nom,adresse FROM "CLIENT" WHERE numero IN
-(SELECT num_Client FROM "EMPRUNTER" WHERE num_Immatriculation IN
-(SELECT num_Im FROM "VEHICULE") AND num_Immatriculation IN
-(SELECT id_Utilitaire FROM "UTILITAIRE"))
+(SELECT num_Client FROM "LOUER" WHERE num_Client IN
+(SELECT num_Client FROM "LOUER" WHERE id_Location IN
+(SELECT id_Location FROM "LOCATION" WHERE num_Im IN (SELECT num_Im FROM "UTILITAIRE"))) AND num_Client IN
+(SELECT num_Client FROM "LOUER" WHERE id_Location IN
+(SELECT id_Location FROM "LOCATION" WHERE num_Im NOT IN (SELECT num_Im FROM "UTILITAIRE"))) GROUP BY num_Client)
+
+--Reflexion pour la requete 1
+--SELECT nom,adresse FROM "CLIENT" WHERE numero IN
+--(SELECT num_Client FROM "LOCATION" WHERE num_Im IN
+--(SELECT num_Im FROM "VEHICULE" WHERE num_Im NOT IN
+--(SELECT num_Im FROM "UTILITAIRE")) AND num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE"))
+
+--SELECT nom,adresse FROM "CLIENT" WHERE numero IN
+--(SELECT num_Client FROM "LOUER" WHERE id_Location IN
+--(SELECT id_Location FROM "LOCATION" WHERE num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE") GROUP BY id_Location HAVING COUNT(num_Im) > 0) GROUP BY num_Client)
+
+--(SELECT id_Location FROM "LOCATION" WHERE num_Im IN (SELECT num_Im FROM "UTILITAIRE"))
+--(SELECT id_Location FROM "LOCATION" WHERE num_Im NOT IN (SELECT num_Im FROM "UTILITAIRE"))
+--SELECT nom,adresse FROM "CLIENT" WHERE numero IN (SELECT num_Client FROM "LOUER")
+--(SELECT num_Client FROM "LOUER" GROUP BY num_Client)
+--SELECT id_Location FROM "LOUER"
 
 --Requete 2
 SELECT modèle,marque FROM "VEHICULE" WHERE num_Im NOT IN
