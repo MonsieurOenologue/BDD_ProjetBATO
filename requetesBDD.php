@@ -45,7 +45,7 @@ echo "</form>";
 var_dump(isset($_POST['submitLoc']));
 
 //ID_LOCATION, JOUR_ENREGISTREMENT, TARIF_JOUR, KILOMETRAGE_DEPART, AGENCE_DEPART, AGENCE_RETOUR, NUM_IM
-if(isset($_POST['submit'])){
+if(isset($_POST['submitLoc'])){
   $idLocation=$_POST['id'];
   $jourEnregistrement=$_POST['jourenregistrement'];
   $tarifJour=$_POST['tarifjour'];
@@ -67,32 +67,34 @@ if(isset($_POST['submit'])){
 
 //REQUETE 10 (EN COURS)
 $nbJoursPrevu = "SELECT nb_Jours FROM \"LOCATION\"";
+$resNbJoursPrevu = pg_query($dbconnect,$nbJoursPrevu);
 $caution = "SELECT caution FROM \"VEHICULE\"";
+$resCaution = pg_query($dbconnect,$caution);
 
 echo "<h3>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h3>";
 echo "<form action='requetesBDD.php' method='post' class='formulaire'>";
-echo '<p>Votre numero de client : <input type="text" name="numclient"/></p>';
+echo '<p>Numero de plaque d\'immatriculation : <input type="text" name="numim"/></p>';
 echo '<p>Nombre de jours : <input type="text" name="nbjours"/></p>';
 echo '<p>Agence de rendu : <input type="text" name="agencerendu"/></p>';
 echo '<p><input type="submit" name="submitRend" value="OK"/></p>';
 echo '</form>';
 
 if(isset($_POST['submitRend'])){
-  $numClient=$_POST['numclient'];
+  $numIm=$_POST['numim'];
   $nbJours=$_POST['nbjours'];
   $agenceRendu=$_POST['agencerendu'];
-  $query = "UPDATE \"VEHICULE\" SET id_Agence=$agenceRendu WHERE num_Client=$numClient";
+  $query = "UPDATE \"VEHICULE\" SET id_Agence=$agenceRendu WHERE num_Im=$numIm";
   $result = pg_query($dbconnect,$query);
   if(!$result){
     echo "Erreur\n";
   }
   else{
     echo "Véhicule rendu !\n";
-      if($nbJours==$nbJoursPrevu){
-        $prixAPayer = $nbJours*$caution;
+      if($nbJours==$resNbJoursPrevu){
+        $prixAPayer = $nbJours*$resCaution;
       }
       else{
-        $prixAPayer = ($nbJours*$caution)+1000;
+        $prixAPayer = ($nbJours*$resCaution)+1000;
       }
       echo "Vous devez payer : $prixAPayer €";
   }
