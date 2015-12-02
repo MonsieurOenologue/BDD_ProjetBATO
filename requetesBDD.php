@@ -19,8 +19,11 @@ echo '<p>Kilometrage de depart : <input type="text" name="kmdepart"/></p>';
 echo '<p>Agence de depart : <input type="text" name="agdepart"/></p>';
 echo '<p>Agence de retour : <input type="text" name="agretour"/></p>';
 echo '<p>Numero d\'immatriculation : <input type="text" name="numim"/></p>';
-echo '<p><input type="submit" value="OK"/></p>';
+echo '<p><input type="submit" name="submitLoc" value="OK"/></p>';
 echo "</form>";
+
+//DEBUG ZONE
+var_dump(isset($_POST['submitLoc']));
 
 //ID_LOCATION, JOUR_ENREGISTREMENT, TARIF_JOUR, KILOMETRAGE_DEPART, AGENCE_DEPART, AGENCE_RETOUR, NUM_IM
 if(isset($_POST['submit'])){
@@ -32,8 +35,13 @@ if(isset($_POST['submit'])){
   $agenceRetour=$_POST['agretour'];
   $numIm=$_POST['numim'];
   $query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$numIm)";
-  pg_query($dbconnect,$query);
-  echo 'Votre location a bien été enregistrée, merci de votre visite :)';
+  $result = pg_query($dbconnect,$query);
+    if(!$result){
+      echo "Erreur";
+    }
+    else{
+      echo 'Votre location a bien été enregistrée, merci de votre visite :)';
+    }
 }
 
 
@@ -45,16 +53,22 @@ echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
 echo "<form action='requetesBDD.php' method='post'>";
 echo '<p>Votre numero de client : <input type="text" name="numclient"/></p>';
 echo '<p>Nombre de jours : <input type="text" name="nbjours"/></p>';
-echo '<p>Agence de rendu : <input type="text" name="agencerendu"</p>';
-echo '<p><input type="submit" value="OK"/></p>';
+echo '<p>Agence de rendu : <input type="text" name="agencerendu"/></p>';
+echo '<p><input type="submit" name="submitRend" value="OK"/></p>';
 echo '</form>';
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submitRend'])){
   $numClient=$_POST['numclient'];
   $nbJours=$_POST['nbjours'];
   $agenceRendu=$_POST['agencerendu'];
   $query = "UPDATE \"VEHICULE\" SET id_Agence=$agenceRendu WHERE num_Client=$numClient";
   $result = pg_query($dbconnect,$query);
+  if(!$result){
+    echo "Erreur";
+  }
+  else{
+    echo "Véhicule rendu !";
+  }
 
   if($nbJours==$nbJoursPrevu){
     $prixAPayer = $nbJours*$caution;
@@ -65,6 +79,8 @@ if(isset($_POST['submit'])){
   echo "Vous devez payer : $prixAPayer €";
 }
 
+//DEBUG ZONE
+var_dump(isset($_POST['submitRend']));
 
 //AFFICHAGE D'UNE TABLE (POUR TESTS)
 /*
