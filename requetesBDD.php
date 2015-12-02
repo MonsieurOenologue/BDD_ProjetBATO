@@ -8,12 +8,6 @@ $password = 'admin';
 
 $dbconnect = pg_connect("host=$host dbname=$dbname user=$user password=$password");
 
-//$result = pg_query($dbconnect,'SELECT * FROM "AGENCE"');
-//if (!$result) {
-//  echo "Une erreur s'est produite.\n";
-//  exit;
-//}
-
 //FORMULAIRE A L'ARRACHE POUR LE MOMENT (REQUETE 9)
 
 echo "<h1>FORMULAIRE D'ENREGISTREMENT D'UNE LOCATION</h1>";
@@ -38,23 +32,55 @@ if(isset($_POST['submit'])){
   $agenceRetour=$_POST['agretour'];
   $numIm=$_POST['numim'];
   $query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$numIm)";
+  pg_query($dbconnect,$query);
+  echo 'Votre location a bien été enregistrée, merci de votre visite :)';
 }
 
 
 
-//$query = "INSERT INTO \"LOCATION\" VALUES (6, '23/02/15',65,800,4,0,2,345432)";
-//pg_query($dbconnect,$query);
+//REQUETE 10 (EN COURS)
+$nbJoursPrevu = "SELECT nb_Jours FROM \"LOCATION\"";
 
-//echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
-//echo '';
+echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
+echo "<form action='requetesBDD.php' method='post'>";
+echo '<p>Votre numero de client : <input type="text" name="numclient"/></p>';
+echo '<p>Nombre de jours : <input type="text" name="nbjours"/></p>';
+echo '<p>Agence de rendu : <input type="text" name="agencerendu"</p>';
+echo '<p><input type="submit" value="OK"/></p>';
+echo '</form>';
+
+if(isset($_POST['submit'])){
+  $numClient=$_POST['numclient'];
+  $nbJours=$_POST['nbjours'];
+  $agenceRendu=$_POST['agencerendu'];
+  $query = "UPDATE \"VEHICULE\" SET id_Agence=$agenceRendu WHERE num_Client=$numClient";
+  $result = pg_query($dbconnect,$query);
+
+  if($nbJours==$nbJoursPrevu){
+    $prixAPayer = $nbJours*$caution;
+  }
+  else{
+    $prixAPayer = ($nbJours*$caution)+1000;
+  }
+  echo "Vous devez payer : $prixAPayer €";
+}
 
 
-//while ($row = pg_fetch_row($result)) {
-//  echo "Test: $row[0]  Test: $row[1]";
-//  echo "<br />\n";
-//}
+//AFFICHAGE D'UNE TABLE (POUR TESTS)
+/*
+$query = "SELECT * FROM \"VEHICULE\"";
+$result = pg_query($query) or die("Echec de la requête :".pg_last_error());
+echo "<table/>\n";
+while ($line=pg_fetch_array($result,null,PGSQL_ASSOC)){
+  echo "\t<tr>\n";
+  foreach ($line as $col_value) {
+    echo "\t\t<td>$col_value</td>\n";
+  }
+  echo "\t</tr>\n";
+}
+echo "</table>\n";
+pg_free_result($result);
+*/
 
 pg_close($dbconnect);
-
-
 ?>
