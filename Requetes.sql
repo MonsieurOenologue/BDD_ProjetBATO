@@ -36,33 +36,23 @@ SELECT numero,nom FROM "CLIENT" WHERE numero IN
 (SELECT num_Client FROM "LOUER" WHERE id_Location IN
 (SELECT id_Location FROM "LOCATION" WHERE agence_Depart != agence_Retour) GROUP BY num_Client)
 
---Requete 4 FUCK IT
---Si chaque marque a son utilitaire
---SELECT nom FROM "AGENCE" WHERE id_Agence IN
---(SELECT id_Agence FROM "VEHICULE" WHERE marque NOT IN
---(SELECT marque FROM "VEHICULE") AND num_Im IN
---(SELECT num_Im FROM "UTILITAIRE") AND num_Im IN
---(SELECT num_Im FROM "LOCATION" WHERE jour_Enregistrement + nb_Jours < CURRENT_DATE) OR num_Im NOT IN
---(SELECT num_Im FROM "LOCATION"))
+--Requete 4
+SELECT nom FROM "AGENCE" WHERE id_Agence IN
+(SELECT nbByMarque.id_Agence FROM
 
---Si on ne prend que les marques ou se trouvent les utilitaires
---SELECT nom FROM "AGENCE" WHERE id_Agence IN
---(SELECT id_Agence FROM "VEHICULE" WHERE marque NOT IN
---(SELECT marque FROM "VEHICULE" WHERE num_Im IN
---(SELECT num_Im FROM "UTILITAIRE")) AND num_Im IN
---(SELECT num_Im FROM "UTILITAIRE") AND (num_Im IN
---(SELECT num_Im FROM "LOCATION" WHERE jour_Enregistrement + nb_Jours < CURRENT_DATE) OR num_Im NOT IN
---(SELECT num_Im FROM "LOCATION")))
+--Nombre de marques d'utilitaire par marque
+(SELECT marques.id_Agence, COUNT(marques.nbMarque) AS countMarque FROM
+(SELECT id_Agence, COUNT(marque) as nbMarque FROM "VEHICULE" WHERE num_Im IN
+(SELECT num_Im FROM "UTILITAIRE" WHERE num_Im NOT IN
+(SELECT num_Im FROM "LOCATION" WHERE jour_Enregistrement + nb_Jours > current_date)) GROUP BY marque,id_Agence)
+AS marques GROUP BY id_Agence) AS nbByMarque,
 
---SELECT id_Agence FROM "VEHICULE" WHERE marque IN
---(SELECT marque FROM "VEHICULE" WHERE id_Agence IN
---(SELECT id_Agence FROM "AGENCE")) AND num_Im IN
---(SELECT num_Im FROM "UTILITAIRE") GROUP BY marque
+--Nombre de marques d'utilitaires en tout
+(SELECT COUNT(marques.nbMarque) AS countTotal FROM
+(SELECT COUNT(marque) as nbMarque FROM "VEHICULE" WHERE num_Im IN
+(SELECT num_Im FROM "UTILITAIRE") GROUP BY marque) AS marques) AS nbTotal
 
---SELECT * FROM "VEHICULE" WHERE
-
---SELECT marque FROM "VEHICULE" WHERE num_Im IN
---(SELECT num_Im FROM "UTILITAIRE") GROUP BY marque
+WHERE nbByMarque.countMarque = nbTotal.countTotal)
 
 
 --Requete 5
