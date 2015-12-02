@@ -17,22 +17,23 @@ CREATE TABLE "CLIENT"
 	type_Client type_of_client
 );
 
+CREATE TABLE "AGENCE"
+(
+	id_Agence integer PRIMARY KEY,
+	nom char(30),
+	adresse char(30)
+);
+
 CREATE TABLE "VEHICULE"
 (
 	num_Im integer PRIMARY KEY,
+	id_Agence integer REFERENCES "AGENCE",
 	date_Achat date,
 	kilometrage integer,
 	modele char(30),
 	marque char(30),
 	caution integer,
 	num_Client integer REFERENCES "CLIENT"
-);
-
-CREATE TABLE "AGENCE"
-(
-	id_Agence integer PRIMARY KEY,
-	nom char(30),
-	adresse char(30)
 );
 
 CREATE TABLE "EMPLOYE"
