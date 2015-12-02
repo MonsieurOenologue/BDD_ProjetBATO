@@ -66,7 +66,10 @@ SELECT numero,nom FROM "CLIENT" WHERE numero IN
 
 
 --Requete 5
-
+SELECT nom FROM "EMPLOYE" WHERE type_Employe = 'responsable' AND id_Agence IN
+(SELECT id_Agence FROM "AGENCE" WHERE id_Agence NOT IN
+(SELECT id_Agence FROM "VEHICULE" WHERE num_Im NOT IN
+(SELECT num_Im FROM "UTILITAIRE")))
 
 --Requete 6
 SELECT nom,adresse FROM "CLIENT" WHERE numero IN
