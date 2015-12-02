@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>REQUETES BDD 9 et 10</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
 <?php
 
 $host = 'localhost';
@@ -48,6 +58,7 @@ if(isset($_POST['submit'])){
 
 //REQUETE 10 (EN COURS)
 $nbJoursPrevu = "SELECT nb_Jours FROM \"LOCATION\"";
+$caution = "SELECT caution FROM \"VEHICULE\"";
 
 echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
 echo "<form action='requetesBDD.php' method='post'>";
@@ -64,20 +75,21 @@ if(isset($_POST['submitRend'])){
   $query = "UPDATE \"VEHICULE\" SET id_Agence=$agenceRendu WHERE num_Client=$numClient";
   $result = pg_query($dbconnect,$query);
   if(!$result){
-    echo "Erreur";
+    echo "Erreur\n";
   }
   else{
-    echo "Véhicule rendu !";
+    echo "Véhicule rendu !\n";
+      if($nbJours==$nbJoursPrevu){
+        $prixAPayer = $nbJours*$caution;
+      }
+      else{
+        $prixAPayer = ($nbJours*$caution)+1000;
+      }
+      echo "Vous devez payer : $prixAPayer €";
+  }
   }
 
-  if($nbJours==$nbJoursPrevu){
-    $prixAPayer = $nbJours*$caution;
-  }
-  else{
-    $prixAPayer = ($nbJours*$caution)+1000;
-  }
-  echo "Vous devez payer : $prixAPayer €";
-}
+
 
 //DEBUG ZONE
 var_dump(isset($_POST['submitRend']));
@@ -100,3 +112,7 @@ pg_free_result($result);
 
 pg_close($dbconnect);
 ?>
+
+</body>
+
+</html>
