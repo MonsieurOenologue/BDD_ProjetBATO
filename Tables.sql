@@ -54,10 +54,15 @@ CREATE TABLE "LOCATION"
 	agence_Depart integer REFERENCES "AGENCE"(id_Agence),
 	agence_Retour integer REFERENCES "AGENCE"(id_Agence),
 	nb_Jours integer,
-	num_Im integer REFERENCES "VEHICULE",
-	num_Client integer REFERENCES "CLIENT"
-
+	num_Im integer REFERENCES "VEHICULE"
 );
+
+CREATE TABLE "LOUER"
+(
+	id_Location integer REFERENCES "LOCATION",
+	num_Client integer REFERENCES "CLIENT"
+);
+ALTER TABLE "LOUER" ADD PRIMARY KEY(id_Location, num_Client);
 
 CREATE TABLE "POSSEDER"
 (
