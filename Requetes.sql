@@ -26,8 +26,8 @@ SELECT nom,adresse FROM "CLIENT" WHERE numero IN
 
 --Requete 2
 SELECT modele,marque FROM "VEHICULE" WHERE modele NOT IN
-(SELECT modele FROM VEHICULE WHERE num_Im IN
-(SELECT num_Im FROM "LOUER") GROUP BY modele)
+(SELECT modele FROM "VEHICULE" WHERE num_Im IN
+(SELECT num_Im FROM "LOCATION") GROUP BY modele)
 
 --Requete 3
 --SELECT numero,nom FROM CLIENT WHERE
