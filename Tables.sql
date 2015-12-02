@@ -21,7 +21,7 @@ CREATE TABLE "VEHICULE"
 	num_Im integer PRIMARY KEY,
 	date_Achat date,
 	kilometrage integer,
-	modèle char(30),
+	modele char(30),
 	marque char(30),
 	caution integer,
 	num_Client integer REFERENCES "CLIENT"
