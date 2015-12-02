@@ -73,9 +73,11 @@ SELECT nom FROM "EMPLOYE" WHERE type_Employe = 'responsable' AND id_Agence IN
 
 --Requete 6
 SELECT nom,adresse FROM "CLIENT" WHERE numero IN
-(SELECT num_Client FROM "LOUER" WHERE COUNT(num_Client) IN
-(SELECT MAX((SELECT COUNT(id_Location) WHERE num_Client IN
-(SELECT num_Client FROM "LOUER"))) FROM "LOUER"))
+(SELECT sums.id FROM
+(SELECT num_Client AS id, COUNT(id_Location) AS sums FROM "LOUER" GROUP BY num_Client) AS sums,
+(SELECT MAX(sums.sums) AS max FROM
+(SELECT COUNT(id_Location) AS sums FROM "LOUER" GROUP BY num_Client) AS sums) AS max
+WHERE sums.sums = max.max)
 
 --Requete 7
 --SELECT
