@@ -8,12 +8,13 @@
 
 --CREATION DES TABLES ET DES COLONNES DES TABLES
 
+CREATE TYPE type_of_client AS ENUM ('particulier', 'entreprise');
 CREATE TABLE "CLIENT"
 (
 	numero integer PRIMARY KEY,
 	nom char(30),
 	adresse char(30),
-	type_Client char(30)
+	type_Client type_of_client
 );
 
 CREATE TABLE "VEHICULE"
