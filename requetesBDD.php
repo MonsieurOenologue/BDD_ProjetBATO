@@ -6,6 +6,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
+<style type="text/css">
+  h3{
+    text-align: center;
+    color: blue;
+  }
+
+</style>
+
 <body>
 
 <?php
@@ -20,14 +28,15 @@ $dbconnect = pg_connect("host=$host dbname=$dbname user=$user password=$password
 
 //FORMULAIRE A L'ARRACHE POUR LE MOMENT (REQUETE 9)
 
-echo "<h1>FORMULAIRE D'ENREGISTREMENT D'UNE LOCATION</h1>";
-echo "<form action='requetesBDD.php' method='post'>";
+echo "<h3>FORMULAIRE D'ENREGISTREMENT D'UNE LOCATION</h3>";
+echo "<form action='requetesBDD.php' method='post' class='formulaire'>";
 echo '<p>Id de la location : <input type="text" name="id"/></p>';
 echo '<p>Jour d\'enregistrement : <input type="text" name="jourenregistrement"/></p>'; //Il faut mettre des 'date' dans le formulaire sinon erreur.
 echo '<p>Tarif du jour : <input type="text" name="tarifjour"/></p>';
 echo '<p>Kilometrage de depart : <input type="text" name="kmdepart"/></p>';
 echo '<p>Agence de depart : <input type="text" name="agdepart"/></p>';
 echo '<p>Agence de retour : <input type="text" name="agretour"/></p>';
+echo '<p>Nombre de jours : <input type="text" name="nbjours"/></p>';
 echo '<p>Numero d\'immatriculation : <input type="text" name="numim"/></p>';
 echo '<p><input type="submit" name="submitLoc" value="OK"/></p>';
 echo "</form>";
@@ -43,8 +52,9 @@ if(isset($_POST['submit'])){
   $kilometrageDepart=$_POST['kmdepart'];
   $agenceDepart=$_POST['agdepart'];
   $agenceRetour=$_POST['agretour'];
+  $nbJours=$_POST['nbjours'];
   $numIm=$_POST['numim'];
-  $query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$numIm)";
+  $query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$nbJours,$numIm)";
   $result = pg_query($dbconnect,$query);
     if(!$result){
       echo "Erreur";
@@ -55,13 +65,12 @@ if(isset($_POST['submit'])){
 }
 
 
-
 //REQUETE 10 (EN COURS)
 $nbJoursPrevu = "SELECT nb_Jours FROM \"LOCATION\"";
 $caution = "SELECT caution FROM \"VEHICULE\"";
 
-echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
-echo "<form action='requetesBDD.php' method='post'>";
+echo "<h3>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h3>";
+echo "<form action='requetesBDD.php' method='post' class='formulaire'>";
 echo '<p>Votre numero de client : <input type="text" name="numclient"/></p>';
 echo '<p>Nombre de jours : <input type="text" name="nbjours"/></p>';
 echo '<p>Agence de rendu : <input type="text" name="agencerendu"/></p>';
