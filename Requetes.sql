@@ -32,7 +32,9 @@ SELECT modele,marque FROM "VEHICULE" WHERE modele NOT IN
 (SELECT numero FROM "CLIENT" WHERE type_Client = 'entreprise'))) GROUP BY modele) GROUP BY modele,marque
 
 --Requete 3
---SELECT numero,nom FROM CLIENT WHERE
+SELECT numero,nom FROM "CLIENT" WHERE numero IN
+(SELECT num_Client FROM "LOUER" WHERE id_Location IN
+(SELECT id_Location FROM "LOCATION" WHERE agence_Depart != agence_Retour) GROUP BY num_Client)
 
 --Requete 4 CEST MARQUE PAS MODELE
 --SELECT nom FROM AGENCE WHERE id_Agence IN
