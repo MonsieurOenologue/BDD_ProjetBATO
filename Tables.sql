@@ -1,4 +1,4 @@
-﻿--DROP TABLE IF EXISTS "VEHICULE" CASCADE;
+--DROP TABLE IF EXISTS "VEHICULE" CASCADE;
 --DROP TABLE IF EXISTS "AGENCE" CASCADE;
 --DROP TABLE IF EXISTS "CLIENT" CASCADE;
 --DROP TABLE IF EXISTS "UTILITAIRE" CASCADE;
@@ -50,7 +50,9 @@ CREATE TABLE "LOCATION"
 	id_Location integer PRIMARY KEY,
 	jour_Enregistrement date,
 	tarif_jour integer,
-	kilometrage_Location integer,
+	kilometrage_Depart integer,
+	agence_Depart integer REFERENCES "AGENCE"(id_Agence),
+	agence_Retour integer REFERENCES "AGENCE"(id_Agence),
 	nb_Jours integer,
 	num_Im integer REFERENCES "VEHICULE",
 	num_Client integer REFERENCES "CLIENT"
@@ -66,8 +68,7 @@ ALTER TABLE "POSSEDER" ADD PRIMARY KEY (num_Agence, num_Immatriculation);
 
 CREATE TABLE "UTILITAIRE"
 (
-	id_Utilitaire integer PRIMARY KEY,
+	num_Im integer PRIMARY KEY REFERENCES "VEHICULE",
 	capacité integer,
-	charge_Max integer,
-	num_Im integer REFERENCES "VEHICULE"
+	charge_Max integer
 );
