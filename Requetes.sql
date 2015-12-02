@@ -70,7 +70,8 @@ SELECT nom,adresse FROM "CLIENT" WHERE numero IN
 WHERE sums.sums = max.max)
 
 --Requete 7
-SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable", responsable.nombre AS "Nombre de location" FROM "AGENCE" INNER JOIN
+SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable",
+responsable.nombre AS "Nombre de location" FROM "AGENCE" INNER JOIN
 
 --Responsable
 (SELECT id_Agence,nom,locations.nombre AS nombre FROM "EMPLOYE" INNER JOIN
@@ -80,6 +81,12 @@ SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable"
 AND nb_Jours > 3 GROUP BY agence_Depart) AS locations ON (id_Agence = agence_Depart)
 WHERE type_Employe = 'responsable') AS responsable ON ("AGENCE".id_Agence = responsable.id_Agence)
 
-
-
 --Requete 8
+SELECT "VEHICULE".num_Im, coalesce(montantFinal.montant, 0) FROM "VEHICULE" LEFT JOIN
+(SELECT locations.num_Im AS num_Im, SUM(locations.montant) AS montant FROM "LOUER" INNER JOIN
+(SELECT id_Location, num_Im, tarif_jour*nb_Jours AS montant FROM "LOCATION" WHERE num_Im IN
+(SELECT num_Im FROM "VEHICULE" WHERE kilometrage < 20000) AND jour_Enregistrement >= '01-07-2015'::date AND
+jour_Enregistrement <= '31-07-2015'::date) AS locations ON ("LOUER".id_Location = locations.id_Location)
+WHERE num_Client IN
+(SELECT num_Client FROM "CLIENT" WHERE type_Client = 'entreprise') GROUP BY locations.num_Im) AS montantFinal
+ON ("VEHICULE".num_Im = montantFinal.num_Im)
