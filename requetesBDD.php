@@ -29,18 +29,24 @@ echo '<p><input type="submit" value="OK"/></p>';
 echo "</form>";
 
 //ID_LOCATION, JOUR_ENREGISTREMENT, TARIF_JOUR, KILOMETRAGE_DEPART, AGENCE_DEPART, AGENCE_RETOUR, NUM_IM
-$idLocation=$_POST['id'];
-$jourEnregistrement=$_POST['jourenregistrement'];
-$tarifJour=$_POST['tarifjour'];
-$kilometrageDepart=$_POST['kmdepart'];
-$agenceDepart=$_POST['agdepart'];
-$agenceRetour=$_POST['agretour'];
-$numIm=$_POST['numim'];
+if(isset($_POST['submit'])){
+  $idLocation=$_POST['id'];
+  $jourEnregistrement=$_POST['jourenregistrement'];
+  $tarifJour=$_POST['tarifjour'];
+  $kilometrageDepart=$_POST['kmdepart'];
+  $agenceDepart=$_POST['agdepart'];
+  $agenceRetour=$_POST['agretour'];
+  $numIm=$_POST['numim'];
+  $query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$numIm)";
+}
 
-$query = "INSERT INTO \"LOCATION\" VALUES ($idLocation,$jourEnregistrement,$tarifJour,$kilometrageDepart,$agenceDepart,$agenceRetour,$numIm)";
+
 
 //$query = "INSERT INTO \"LOCATION\" VALUES (6, '23/02/15',65,800,4,0,2,345432)";
-pg_query($dbconnect,$query);
+//pg_query($dbconnect,$query);
+
+//echo "<h1>ENREGISTREMENT DE LA RESTITUTION D'UN VEHICULE</h1>";
+//echo '';
 
 
 //while ($row = pg_fetch_row($result)) {
