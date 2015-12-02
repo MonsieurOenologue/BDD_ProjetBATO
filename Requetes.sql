@@ -70,6 +70,16 @@ SELECT nom,adresse FROM "CLIENT" WHERE numero IN
 WHERE sums.sums = max.max)
 
 --Requete 7
---SELECT
+SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable", responsable.nombre AS "Nombre de location" FROM "AGENCE" INNER JOIN
+
+--Responsable
+(SELECT id_Agence,nom,locations.nombre AS nombre FROM "EMPLOYE" INNER JOIN
+
+--Nombre de locations
+(SELECT agence_Depart, COUNT(num_Im) AS nombre FROM "LOCATION" WHERE jour_Enregistrement > '01-01-2015'::date
+AND nb_Jours > 3 GROUP BY agence_Depart) AS locations ON (id_Agence = agence_Depart)
+WHERE type_Employe = 'responsable') AS responsable ON ("AGENCE".id_Agence = responsable.id_Agence)
+
+
 
 --Requete 8
