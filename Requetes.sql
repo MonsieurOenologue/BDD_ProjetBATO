@@ -27,7 +27,9 @@ SELECT nom,adresse FROM "CLIENT" WHERE numero IN
 --Requete 2
 SELECT modele,marque FROM "VEHICULE" WHERE modele NOT IN
 (SELECT modele FROM "VEHICULE" WHERE num_Im IN
-(SELECT num_Im FROM "LOCATION") GROUP BY modele)
+(SELECT num_Im FROM "LOCATION" WHERE id_Location IN
+(SELECT id_Location FROM "LOUER" WHERE num_Client IN
+(SELECT numero FROM "CLIENT" WHERE type_Client = 'entreprise'))) GROUP BY modele) GROUP BY modele,marque
 
 --Requete 3
 --SELECT numero,nom FROM CLIENT WHERE
