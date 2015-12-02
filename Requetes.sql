@@ -36,15 +36,37 @@ SELECT numero,nom FROM "CLIENT" WHERE numero IN
 (SELECT num_Client FROM "LOUER" WHERE id_Location IN
 (SELECT id_Location FROM "LOCATION" WHERE agence_Depart != agence_Retour) GROUP BY num_Client)
 
---Requete 4 CEST MARQUE PAS MODELE
---SELECT nom FROM AGENCE WHERE id_Agence IN
---(SELECT num_Agence FROM POSSEDER WHERE num_Immatriculation IN
---(SELECT num_Immatriculation FROM MODELE WHERE num_Immatriculation IN
---(SELECT
---) GROUP BY id_Modele))
+--Requete 4 FUCK IT
+--Si chaque marque a son utilitaire
+--SELECT nom FROM "AGENCE" WHERE id_Agence IN
+--(SELECT id_Agence FROM "VEHICULE" WHERE marque NOT IN
+--(SELECT marque FROM "VEHICULE") AND num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE") AND num_Im IN
+--(SELECT num_Im FROM "LOCATION" WHERE jour_Enregistrement + nb_Jours < CURRENT_DATE) OR num_Im NOT IN
+--(SELECT num_Im FROM "LOCATION"))
+
+--Si on ne prend que les marques ou se trouvent les utilitaires
+--SELECT nom FROM "AGENCE" WHERE id_Agence IN
+--(SELECT id_Agence FROM "VEHICULE" WHERE marque NOT IN
+--(SELECT marque FROM "VEHICULE" WHERE num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE")) AND num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE") AND (num_Im IN
+--(SELECT num_Im FROM "LOCATION" WHERE jour_Enregistrement + nb_Jours < CURRENT_DATE) OR num_Im NOT IN
+--(SELECT num_Im FROM "LOCATION")))
+
+--SELECT id_Agence FROM "VEHICULE" WHERE marque IN
+--(SELECT marque FROM "VEHICULE" WHERE id_Agence IN
+--(SELECT id_Agence FROM "AGENCE")) AND num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE") GROUP BY marque
+
+--SELECT * FROM "VEHICULE" WHERE
+
+--SELECT marque FROM "VEHICULE" WHERE num_Im IN
+--(SELECT num_Im FROM "UTILITAIRE") GROUP BY marque
+
 
 --Requete 5
---SELECT nom FROM EMPLOYE WHERE
+
 
 --Requete 6
 SELECT nom,adresse FROM "CLIENT" WHERE numero IN

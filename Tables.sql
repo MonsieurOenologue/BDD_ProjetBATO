@@ -36,14 +36,14 @@ CREATE TABLE "VEHICULE"
 	num_Client integer REFERENCES "CLIENT"
 );
 
+CREATE TYPE type_of_employe AS ENUM ('responsable', 'technicien', 'commercial');
 CREATE TABLE "EMPLOYE"
 (
 	numero integer PRIMARY KEY,
 	nom char(30),
 	adresse char(30),
 	date_Embauche date,
-	type_Employe char(15),
-	est_Responsable boolean,
+	type_Employe type_of_employe,
 	id_Agence integer REFERENCES "AGENCE"
 );
 
