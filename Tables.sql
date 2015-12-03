@@ -19,7 +19,6 @@ CREATE TABLE "AGENCE"
 CREATE TABLE "VEHICULE"
 (
 	num_Im int PRIMARY KEY,
-	id_Agence integer REFERENCES "AGENCE",
 	date_Achat date,
 	kilometrage integer,
 	modele char(30),
