@@ -1,4 +1,4 @@
---CREATION DES TABLES ET DES COLONNES DES TABLES
+﻿--CREATION DES TABLES ET DES COLONNES DES TABLES
 
 CREATE TYPE type_of_client AS ENUM ('particulier', 'entreprise');
 CREATE TABLE "CLIENT"
@@ -19,6 +19,7 @@ CREATE TABLE "AGENCE"
 CREATE TABLE "VEHICULE"
 (
 	num_Im int PRIMARY KEY,
+	id_Agence serial REFERENCES "AGENCE",
 	date_Achat date,
 	kilometrage integer,
 	modele char(30),
