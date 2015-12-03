@@ -27,13 +27,12 @@ CREATE TABLE "AGENCE"
 CREATE TABLE "VEHICULE"
 (
 	num_Im integer PRIMARY KEY,
-	id_Agence integer REFERENCES "AGENCE",
 	date_Achat date,
 	kilometrage integer,
 	modele char(30),
 	marque char(30),
 	caution integer,
-	num_Client integer REFERENCES "CLIENT"
+	id_Agence integer REFERENCES "AGENCE"
 );
 
 CREATE TYPE type_of_employe AS ENUM ('responsable', 'technicien', 'commercial');
@@ -59,19 +58,12 @@ CREATE TABLE "LOCATION"
 	num_Im integer REFERENCES "VEHICULE"
 );
 
-CREATE TABLE "LOUER"
+CREATE TABLE "CORRESPONDRE"
 (
 	id_Location integer REFERENCES "LOCATION",
 	num_Client integer REFERENCES "CLIENT"
 );
-ALTER TABLE "LOUER" ADD PRIMARY KEY(id_Location, num_Client);
-
-CREATE TABLE "POSSEDER"
-(
-	num_Agence integer  REFERENCES "AGENCE",
-	num_Immatriculation integer REFERENCES "VEHICULE"
-);
-ALTER TABLE "POSSEDER" ADD PRIMARY KEY (num_Agence, num_Immatriculation);
+ALTER TABLE "CORRESPONDRE" ADD PRIMARY KEY(id_Location, num_Client);
 
 CREATE TABLE "UTILITAIRE"
 (

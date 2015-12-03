@@ -3,10 +3,10 @@ SELECT nom,adresse
 FROM "CLIENT"
 WHERE numero IN (
     SELECT num_Client
-    FROM "LOUER"
+    FROM "CORRESPONDRE"
     WHERE num_Client IN (
         SELECT num_Client
-        FROM "LOUER"
+        FROM "CORRESPONDRE"
         WHERE id_Location IN (
             SELECT id_Location
             FROM "LOCATION"
@@ -18,7 +18,7 @@ WHERE numero IN (
     )
     AND num_Client IN (
         SELECT num_Client
-        FROM "LOUER"
+        FROM "CORRESPONDRE"
         WHERE id_Location IN (
             SELECT id_Location
             FROM "LOCATION"
@@ -42,7 +42,7 @@ WHERE modele NOT IN (
         FROM "LOCATION"
         WHERE id_Location IN (
             SELECT id_Location
-            FROM "LOUER"
+            FROM "CORRESPONDRE"
             WHERE num_Client IN (
                 SELECT numero
                 FROM "CLIENT"
@@ -59,7 +59,7 @@ SELECT numero,nom
 FROM "CLIENT"
 WHERE numero IN (
     SELECT num_Client
-    FROM "LOUER"
+    FROM "CORRESPONDRE"
     WHERE id_Location IN (
         SELECT id_Location
         FROM "LOCATION"
@@ -129,12 +129,12 @@ WHERE numero IN (
     SELECT sums.id
     FROM (
         SELECT num_Client AS id, COUNT(id_Location) AS sums
-        FROM "LOUER" GROUP BY num_Client
+        FROM "CORRESPONDRE" GROUP BY num_Client
     ) AS sums, (
         SELECT MAX(sums.sums) AS max
         FROM (
             SELECT COUNT(id_Location) AS sums
-            FROM "LOUER"
+            FROM "CORRESPONDRE"
             GROUP BY num_Client
         ) AS sums
     ) AS max
@@ -165,7 +165,7 @@ ON (
 SELECT "VEHICULE".num_Im, coalesce(montantFinal.montant, 0)
 FROM "VEHICULE" LEFT JOIN (
     SELECT locations.num_Im AS num_Im, SUM(locations.montant) AS montant
-    FROM "LOUER" INNER JOIN (
+    FROM "CORRESPONDRE" INNER JOIN (
         SELECT id_Location, num_Im, tarif_jour*nb_Jours AS montant
         FROM "LOCATION"
         WHERE num_Im IN (
@@ -177,7 +177,7 @@ FROM "VEHICULE" LEFT JOIN (
         AND jour_Enregistrement <= '31-07-2015'::date
     ) AS locations
     ON (
-        "LOUER".id_Location = locations.id_Location
+        "CORRESPONDRE".id_Location = locations.id_Location
     )
     WHERE num_Client IN (
         SELECT num_Client
