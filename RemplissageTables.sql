@@ -11,21 +11,21 @@ INSERT INTO "AGENCE" VALUES (5,'Poudcars','Voie 9 3/4');
 --NUMERO, NOM, ADRESSE, DATE_EMBAUCHE, TYPE_EMPLOYE, ID_AGENCE
 INSERT INTO "EMPLOYE" VALUES (0,'Bastien','2 rue de la barbe','14/04/2015','responsable',0);
 INSERT INTO "EMPLOYE" VALUES (1,'Thomas','4 rue du style','14/04/2015','responsable',1);
-INSERT INTO "EMPLOYE" VALUES (2,'Michel','8 rue des framboises','14/04/2015','technicien',0);
+INSERT INTO "EMPLOYE" VALUES (2,'Michel','8 rue des framboises','14/04/2015','mécanicien',0);
 INSERT INTO "EMPLOYE" VALUES (3,'Jean','7 rue des fraises','14/04/2015','commercial',1);
-INSERT INTO "EMPLOYE" VALUES (4,'Jacques','12 rue des poires','18/05/2015','technicien',1);
+INSERT INTO "EMPLOYE" VALUES (4,'Jacques','12 rue des poires','18/05/2015','mécanicien',1);
 INSERT INTO "EMPLOYE" VALUES (5,'Jeanne','13 rue des coquelicots','12/05/2015','commercial',0);
 INSERT INTO "EMPLOYE" VALUES (6,'Pierre','4 rue du travail','18/05/2015','responsable',2);
-INSERT INTO "EMPLOYE" VALUES (7,'Roger','6 quai des serpents','23/05/2015','technicien',2);
+INSERT INTO "EMPLOYE" VALUES (7,'Roger','6 quai des serpents','23/05/2015','mécanicien',2);
 INSERT INTO "EMPLOYE" VALUES (8,'Charlotte','3 rue du chocolat','26/05/2015','commercial',2);
 INSERT INTO "EMPLOYE" VALUES (9,'Alexandre','10 rue de la coupe','18/05/2014','responsable',3);
-INSERT INTO "EMPLOYE" VALUES (10,'Alexis','6 avenue paumée','23/07/2015','technicien',3);
+INSERT INTO "EMPLOYE" VALUES (10,'Alexis','6 avenue paumée','23/07/2015','mécanicien',3);
 INSERT INTO "EMPLOYE" VALUES (11,'Arya','3 rue Kurde','01/02/1987','commercial',3);
 INSERT INTO "EMPLOYE" VALUES (12,'Lucas','4 rue du swag','25/11/2015','responsable',4);
-INSERT INTO "EMPLOYE" VALUES (13,'Louis','6 quai du jaitoutfini','23/07/2015','technicien',4);
+INSERT INTO "EMPLOYE" VALUES (13,'Louis','6 quai du jaitoutfini','23/07/2015','mécanicien',4);
 INSERT INTO "EMPLOYE" VALUES (14,'Mallaurie','3 rue de la couture','02/04/2015','commercial',4);
 INSERT INTO "EMPLOYE" VALUES (15,'Lise','4 avenue du sourire','02/01/2012','responsable',5);
-INSERT INTO "EMPLOYE" VALUES (16,'Johan','6 rue jemenfou','04/04/2004','technicien',5);
+INSERT INTO "EMPLOYE" VALUES (16,'Johan','6 rue jemenfou','04/04/2004','mécanicien',5);
 INSERT INTO "EMPLOYE" VALUES (17,'Paul','3 rue','12/11/2010','commercial',5);
 
 --NUMERO, NOM, ADRESSE
@@ -59,6 +59,7 @@ INSERT INTO "LOCATION" VALUES (3, '14/07/15',80,400,4,4,1,543289);
 INSERT INTO "LOCATION" VALUES (4, '16/02/15',90,500,5,1,20,982342);
 INSERT INTO "LOCATION" VALUES (5, '23/02/15',65,800,4,0,2,345432);
 INSERT INTO "LOCATION" VALUES (6, '23/11/15',2,1500,2,2,150,101010);
+INSERT INTO "LOCATION" VALUES (7, '10/11/11',85,400,1,2,36,132289);
 
 --ID_LOCATION, NUM_CLIENT
 INSERT INTO "CORRESPONDRE" VALUES(0,1);
@@ -67,6 +68,8 @@ INSERT INTO "CORRESPONDRE" VALUES(2,6);
 INSERT INTO "CORRESPONDRE" VALUES(3,1);
 INSERT INTO "CORRESPONDRE" VALUES(4,4);
 INSERT INTO "CORRESPONDRE" VALUES(5,5);
+INSERT INTO "CORRESPONDRE" VALUES(6,4);
+INSERT INTO "CORRESPONDRE" VALUES(7,4);
 
 --NUM_IM, CAPACITE, CHARGE_MAX
 INSERT INTO "UTILITAIRE" VALUES (132289,700,1500);

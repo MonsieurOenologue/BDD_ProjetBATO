@@ -27,7 +27,7 @@ CREATE TABLE "VEHICULE"
 	caution integer
 );
 
-CREATE TYPE type_of_employe AS ENUM ('responsable', 'technicien', 'commercial');
+CREATE TYPE type_of_employe AS ENUM ('responsable', 'mécanicien', 'commercial');
 CREATE TABLE "EMPLOYE"
 (
 	numero serial PRIMARY KEY,
