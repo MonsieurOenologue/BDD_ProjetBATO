@@ -142,10 +142,10 @@ WHERE numero IN (
 );
 
 --Requete 7
-SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable", responsable.nombre AS "Nombre de location"
+SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable", responsable.nombre AS "Nombre de locations"
 FROM "AGENCE" INNER JOIN (
-    SELECT id_Agence,nom,locations.nombre AS nombre
-    FROM "EMPLOYE" INNER JOIN (
+    SELECT id_Agence,nom,coalesce(locations.nombre, 0) AS nombre
+    FROM "EMPLOYE" LEFT JOIN (
         SELECT agence_Depart, COUNT(num_Im) AS nombre
         FROM "LOCATION"
         WHERE jour_Enregistrement > '01-01-2015'::date
@@ -171,7 +171,6 @@ FROM "VEHICULE" LEFT JOIN (
         WHERE num_Im IN (
             SELECT num_Im
             FROM "VEHICULE"
-            WHERE kilometrage < 20000
         )
         AND jour_Enregistrement >= '01-07-2015'::date
         AND jour_Enregistrement <= '31-07-2015'::date
@@ -188,4 +187,5 @@ FROM "VEHICULE" LEFT JOIN (
 ) AS montantFinal
 ON (
     "VEHICULE".num_Im = montantFinal.num_Im
-);
+)
+WHERE kilometrage < 20000;
