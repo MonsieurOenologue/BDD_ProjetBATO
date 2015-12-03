@@ -29,7 +29,7 @@ WHERE numero IN (
         )
     )
     GROUP BY num_Client
-)
+);
 
 --Requete 2
 SELECT modele,marque
@@ -52,7 +52,7 @@ WHERE modele NOT IN (
     )
     GROUP BY modele
 )
-GROUP BY modele,marque
+GROUP BY modele,marque;
 
 --Requete 3
 SELECT numero,nom
@@ -66,7 +66,7 @@ WHERE numero IN (
         WHERE agence_Depart != agence_Retour
     )
     GROUP BY num_Client
-)
+);
 
 --Requete 4
 SELECT nom
@@ -102,7 +102,7 @@ WHERE id_Agence IN (
             GROUP BY marque
         ) AS marques
     ) AS nbTotal
-WHERE nbByMarque.countMarque = nbTotal.countTotal)
+WHERE nbByMarque.countMarque = nbTotal.countTotal);
 
 
 --Requete 5
@@ -120,7 +120,7 @@ AND id_Agence IN (
             FROM "UTILITAIRE"
         )
     )
-)
+);
 
 --Requete 6
 SELECT nom,adresse
@@ -139,7 +139,7 @@ WHERE numero IN (
         ) AS sums
     ) AS max
     WHERE sums.sums = max.max
-)
+);
 
 --Requete 7
 SELECT "AGENCE".nom AS "Nom de l'agence",responsable.nom AS "Nom du responsable", responsable.nombre AS "Nombre de location"
@@ -159,7 +159,7 @@ FROM "AGENCE" INNER JOIN (
 ) AS responsable
 ON (
     "AGENCE".id_Agence = responsable.id_Agence
-)
+);
 
 --Requete 8
 SELECT "VEHICULE".num_Im, coalesce(montantFinal.montant, 0)
@@ -188,4 +188,4 @@ FROM "VEHICULE" LEFT JOIN (
 ) AS montantFinal
 ON (
     "VEHICULE".num_Im = montantFinal.num_Im
-)
+);

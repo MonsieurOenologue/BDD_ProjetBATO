@@ -1,11 +1,3 @@
---DROP TABLE IF EXISTS "VEHICULE" CASCADE;
---DROP TABLE IF EXISTS "AGENCE" CASCADE;
---DROP TABLE IF EXISTS "CLIENT" CASCADE;
---DROP TABLE IF EXISTS "UTILITAIRE" CASCADE;
---DROP TABLE IF EXISTS "EMPLOYE" CASCADE;
---DROP TABLE IF EXISTS "LOCATION" CASCADE;
---DROP TABLE IF EXISTS "POSSEDER" CASCADE;
-
 --CREATION DES TABLES ET DES COLONNES DES TABLES
 
 CREATE TYPE type_of_client AS ENUM ('particulier', 'entreprise');
@@ -32,8 +24,7 @@ CREATE TABLE "VEHICULE"
 	kilometrage integer,
 	modele char(30),
 	marque char(30),
-	caution integer,
-	id_Agence integer REFERENCES "AGENCE"
+	caution integer
 );
 
 CREATE TYPE type_of_employe AS ENUM ('responsable', 'technicien', 'commercial');
