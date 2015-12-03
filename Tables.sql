@@ -11,7 +11,7 @@
 CREATE TYPE type_of_client AS ENUM ('particulier', 'entreprise');
 CREATE TABLE "CLIENT"
 (
-	numero integer PRIMARY KEY,
+	numero serial PRIMARY KEY,
 	nom char(30),
 	adresse char(30),
 	type_Client type_of_client
@@ -19,14 +19,14 @@ CREATE TABLE "CLIENT"
 
 CREATE TABLE "AGENCE"
 (
-	id_Agence integer PRIMARY KEY,
+	id_Agence serial PRIMARY KEY,
 	nom char(30),
 	adresse char(30)
 );
 
 CREATE TABLE "VEHICULE"
 (
-	num_Im integer PRIMARY KEY,
+	num_Im int PRIMARY KEY,
 	id_Agence integer REFERENCES "AGENCE",
 	date_Achat date,
 	kilometrage integer,
@@ -39,7 +39,7 @@ CREATE TABLE "VEHICULE"
 CREATE TYPE type_of_employe AS ENUM ('responsable', 'technicien', 'commercial');
 CREATE TABLE "EMPLOYE"
 (
-	numero integer PRIMARY KEY,
+	numero serial PRIMARY KEY,
 	nom char(30),
 	adresse char(30),
 	date_Embauche date,
@@ -75,7 +75,7 @@ ALTER TABLE "POSSEDER" ADD PRIMARY KEY (num_Agence, num_Immatriculation);
 
 CREATE TABLE "UTILITAIRE"
 (
-	num_Im integer PRIMARY KEY REFERENCES "VEHICULE",
+	num_Im int PRIMARY KEY REFERENCES "VEHICULE",
 	capacité integer,
 	charge_Max integer
 );

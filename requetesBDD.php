@@ -31,7 +31,7 @@ $dbconnect = pg_connect("host=$host dbname=$dbname user=$user password=$password
 echo "<h3>FORMULAIRE D'ENREGISTREMENT D'UNE LOCATION</h3>";
 echo "<form action='requetesBDD.php' method='post' class='formulaire'>";
 echo '<p>Id de la location : <input type="text" name="id"/></p>';
-echo '<p>Jour d\'enregistrement : <input type="text" name="jourenregistrement"/></p>'; //Il faut mettre des 'date' dans le formulaire sinon erreur.
+echo '<p>Jour d\'enregistrement : <input type="date" name="jourenregistrement"/>'.date('Y-m-d').'</p>'; //Il faut mettre des 'date' dans le formulaire sinon erreur.
 echo '<p>Tarif du jour : <input type="text" name="tarifjour"/></p>';
 echo '<p>Kilometrage de depart : <input type="text" name="kmdepart"/></p>';
 echo '<p>Agence de depart : <input type="text" name="agdepart"/></p>';
@@ -43,9 +43,14 @@ echo "</form>";
 
 //DEBUG ZONE
 var_dump(isset($_POST['submitLoc']));
+var_dump(empty($_POST['jourenregistrement']))
+var_dump(empty($_POST['kmdepart']))
 
 //ID_LOCATION, JOUR_ENREGISTREMENT, TARIF_JOUR, KILOMETRAGE_DEPART, AGENCE_DEPART, AGENCE_RETOUR, NUM_IM
-if(isset($_POST['submitLoc'])){
+if(!empty($_POST['id']) && !empty($_POST['jourenregistrement'])
+&& !empty($_POST['tarifjour']) && !empty($_POST['kmdepart']) && !empty($_POST['agdepart']) !empty($_POST['agretour'])
+&& !empty($_POST['nbjours']) && !empty($_POST['numim'])){
+
   $idLocation=$_POST['id'];
   $jourEnregistrement=$_POST['jourenregistrement'];
   $tarifJour=$_POST['tarifjour'];
@@ -63,6 +68,16 @@ if(isset($_POST['submitLoc'])){
       echo 'Votre location a bien été enregistrée, merci de votre visite :)';
     }
 }
+else{
+  echo "Un des champs a été laissé vide, merci de recommencer\n"
+}
+/*EXCEPTIONS A PRENDRE EN COMPTE :
+  -Caractères spéciaux à éviter.
+  -Date à remplir pour jour_enregistrement
+  -id location pas à remplir, automatique(ils se suivent)
+  -kilométrage de départ déjà défini (rapport à kilométrage de VEHICULE)
+  -numim doit exister dans VEHICULE
+*/
 
 
 //REQUETE 10 (EN COURS)
